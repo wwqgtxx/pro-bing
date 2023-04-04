@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"runtime"
 	"time"
 
 	probing "github.com/prometheus-community/pro-bing"
@@ -91,6 +92,10 @@ func main() {
 	pinger.Timeout = *timeout
 	pinger.TTL = *ttl
 	pinger.SetPrivileged(*privileged)
+
+	if runtime.GOOS == "windows" {
+		pinger.SetPrivileged(true)
+	}
 
 	fmt.Printf("PING %s (%s):\n", pinger.Addr(), pinger.IPAddr())
 	err = pinger.Run()

@@ -9,3 +9,5 @@ require (
 )
 
 require golang.org/x/sys v0.9.0 // indirect
+
+replace golang.org/x/net v0.11.0 => github.com/wwqgtxx/go-net v0.0.0-20230704235924-26e40647a3e0
